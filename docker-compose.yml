@@ -1,0 +1,53 @@
+version: '3'
+services:
+  puppetserver:
+    container_name: puppetserver
+    image: puppetserver
+    build:
+      context: master
+    ports:
+      - 8140
+    hostname: puppetserver.test.local
+    volumes:
+      - $PWD/master/puppet:/etc/puppetlabs/puppet
+    networks:
+      puppetnet:
+        aliases:
+          - test.local
+  puppetubuntu:
+    container_name: puppetubuntu
+    image: puppetubuntu
+    build:
+      context: ubuntu-node-1
+    hostname: puppetubuntu.test.local
+    networks:
+      puppetnet:
+        aliases:
+          - test.local
+  agent-1:
+    container_name: agent-1
+    image: agent-1
+    build:
+      context: ubuntu-node-2
+    hostname: agent-1.test.local
+    volumes:
+      - $PWD/ubuntu-node-2/hosts:/etc/hosts
+      - $PWD/ubuntu-node-2/puppet.conf:/etc/puppetlabs/puppet/puppet.conf
+    networks:
+      puppetnet:
+        aliases:
+          - test.local
+networks:
+  puppetnet:
+    ipam:
+      config:
+        - subnet: 172.24.0.0/16
+          gateway: 172.24.0.1
+          aux_addresses:
+            puppetserver: 172.24.0.2
+            puppetubuntu: 172.24.0.3
+            agent-1: 172.24.0.4
+            
+
+
+
