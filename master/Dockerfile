@@ -23,6 +23,9 @@ RUN wget https://apt.puppetlabs.com/puppet6-release-focal.deb && \
 
 RUN apt-get update && \
     apt-get install -y puppetserver
+
+RUN ln -s  /opt/puppetlabs/bin/puppet /usr/local/sbin/puppet
+RUN ln -s /opt/puppetlabs/bin/puppetserver /usr/local/sbin/puppetserver
 #ENTRYPOINT ["tail", "-f", "/dev/null"]
 
 #CMD /usr/sbin/sshd -D

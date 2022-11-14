@@ -20,4 +20,6 @@ RUN wget https://apt.puppetlabs.com/puppet6-release-focal.deb && \
 RUN apt-get update && \
     apt-get install -y puppet-agent
 
+RUN ln -s  /opt/puppetlabs/bin/puppet /usr/local/sbin/puppet
+
 CMD /usr/sbin/sshd -D

@@ -1,0 +1,2 @@
+172.24.0.3      puppetubuntu.test.local puppetubuntu
+172.24.0.2      puppetserver.test.local puppetserver puppet

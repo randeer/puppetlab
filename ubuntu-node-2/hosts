@@ -5,4 +5,4 @@ ff00::0 ip6-mcastprefix
 ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 172.24.0.4      agent-1.test.local puppetubuntu
-172.24.0.3      puppetserver.test.local puppetserver puppet
+172.24.0.2      puppetserver.test.local puppetserver puppet
